@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - UrbanNest360</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo">
+                <img src="images/logo.png" alt="UrbanNest360 Logo">
+            </a>
+            
+            <div class="nav-links">
+                <a href="/properties.html">Properties</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+            
+            <div class="nav-auth">
+                <div class="user-menu">
+                    <button id="userMenuBtn" class="btn btn-icon">
+                        <span class="material-icons">account_circle</span>
+                    </button>
+                    <div class="user-dropdown">
+                        <a href="/customer.html" class="active">
+                            <span class="material-icons">dashboard</span>
+                            Dashboard
+                        </a>
+                        <a href="/customer/profile.html">
+                            <span class="material-icons">person</span>
+                            Profile
+                        </a>
+                        <a href="/customer/settings.html">
+                            <span class="material-icons">settings</span>
+                            Settings
+                        </a>
+                        <button id="logoutBtn" class="btn btn-text">
+                            <span class="material-icons">logout</span>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Welcome, <span id="userName">User</span></h1>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <span class="material-icons">favorite</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="savedPropertiesCount">0</span>
+                            <span class="stat-label">Saved Properties</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">mail</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="inquiriesCount">0</span>
+                            <span class="stat-label">Inquiries</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">event</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="visitsCount">0</span>
+                            <span class="stat-label">Scheduled Visits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Saved Properties -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Saved Properties</h2>
+                        <button id="viewAllSaved" class="btn btn-text">View All</button>
+                    </div>
+                    <div class="properties-grid" id="savedProperties">
+                        <!-- Saved properties will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Recent Inquiries -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Recent Inquiries</h2>
+                        <button id="viewAllInquiries" class="btn btn-text">View All</button>
+                    </div>
+                    <div class="inquiries-list" id="recentInquiries">
+                        <!-- Recent inquiries will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Scheduled Visits -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Upcoming Visits</h2>
+                        <button id="viewAllVisits" class="btn btn-text">View All</button>
+                    </div>
+                    <div class="visits-list" id="upcomingVisits">
+                        <!-- Upcoming visits will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Recommended Properties -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Recommended for You</h2>
+                        <button id="viewAllRecommended" class="btn btn-text">View All</button>
+                    </div>
+                    <div class="properties-grid" id="recommendedProperties">
+                        <!-- Recommended properties will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>UrbanNest360</h3>
+                    <p>Your trusted partner in real estate</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <span class="material-icons">facebook</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="material-icons">twitter</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="material-icons">instagram</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="material-icons">linkedin</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/properties.html">Properties</a></li>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Property Types</h4>
+                    <ul>
+                        <li><a href="/properties.html?type=residential">Residential</a></li>
+                        <li><a href="/properties.html?type=commercial">Commercial</a></li>
+                        <li><a href="/properties.html?type=land">Land</a></li>
+                        <li><a href="/properties.html?type=rental">Rental</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <span class="material-icons">location_on</span>
+                            123 Real Estate Street, City, Country
+                        </li>
+                        <li>
+                            <span class="material-icons">phone</span>
+                            +1 234 567 890
+                        </li>
+                        <li>
+                            <span class="material-icons">email</span>
+                            info@urbannest360.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 UrbanNest360. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Initialize customer dashboard
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check authentication
+            if (!window.app.authManager.isAuthenticated()) {
+                window.location.href = '/auth/login.html';
+                return;
+            }
+
+            try {
+                // Load user data
+                const user = await window.app.authManager.getCurrentUser();
+                document.getElementById('userName').textContent = user.name;
+
+                // Load dashboard data
+                await Promise.all([
+                    loadSavedProperties(),
+                    loadRecentInquiries(),
+                    loadUpcomingVisits(),
+                    loadRecommendedProperties()
+                ]);
+
+                // Setup event listeners
+                setupEventListeners();
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                window.app.uiHelpers.showError(document.querySelector('.dashboard-content'), 'Failed to load dashboard data');
+            }
+        });
+
+        // Load saved properties
+        async function loadSavedProperties() {
+            try {
+                const savedProperties = await window.app.favoritesManager.getSavedProperties();
+                const container = document.getElementById('savedProperties');
+                
+                document.getElementById('savedPropertiesCount').textContent = savedProperties.length;
+                
+                container.innerHTML = savedProperties.slice(0, 3).map(property => `
+                    <div class="property-card">
+                        <img src="${property.images[0]}" alt="${property.title}">
+                        <div class="property-card-content">
+                            <h3>${property.title}</h3>
+                            <p class="property-price">${window.app.uiHelpers.formatPrice(property.price)}</p>
+                            <p class="property-location">${property.location}</p>
+                            <div class="property-amenities">
+                                ${property.amenities.slice(0, 3).map(amenity => `
+                                    <span class="amenity">${amenity}</span>
+                                `).join('')}
+                            </div>
+                            <div class="property-actions">
+                                <a href="/property-detail.html?id=${property.id}" class="btn btn-primary">View Details</a>
+                                <button class="btn btn-icon remove-favorite" data-id="${property.id}">
+                                    <span class="material-icons">favorite</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading saved properties:', error);
+            }
+        }
+
+        // Load recent inquiries
+        async function loadRecentInquiries() {
+            try {
+                const inquiries = await window.app.propertyManager.getUserInquiries();
+                const container = document.getElementById('recentInquiries');
+                
+                document.getElementById('inquiriesCount').textContent = inquiries.length;
+                
+                container.innerHTML = inquiries.slice(0, 5).map(inquiry => `
+                    <div class="inquiry-item">
+                        <div class="inquiry-info">
+                            <h4>${inquiry.property.title}</h4>
+                            <p>${inquiry.message}</p>
+                            <div class="inquiry-meta">
+                                <span class="inquiry-date">${window.app.uiHelpers.formatDate(inquiry.date)}</span>
+                                <span class="inquiry-status ${inquiry.status.toLowerCase()}">${inquiry.status}</span>
+                            </div>
+                        </div>
+                        <div class="inquiry-actions">
+                            <a href="/property-detail.html?id=${inquiry.property.id}" class="btn btn-text">View Property</a>
+                            <button class="btn btn-icon delete-inquiry" data-id="${inquiry.id}">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading inquiries:', error);
+            }
+        }
+
+        // Load upcoming visits
+        async function loadUpcomingVisits() {
+            try {
+                const visits = await window.app.propertyManager.getUserVisits();
+                const container = document.getElementById('upcomingVisits');
+                
+                document.getElementById('visitsCount').textContent = visits.length;
+                
+                container.innerHTML = visits.slice(0, 5).map(visit => `
+                    <div class="visit-item">
+                        <div class="visit-info">
+                            <h4>${visit.property.title}</h4>
+                            <div class="visit-details">
+                                <span class="visit-date">
+                                    <span class="material-icons">event</span>
+                                    ${window.app.uiHelpers.formatDate(visit.date)}
+                                </span>
+                                <span class="visit-time">
+                                    <span class="material-icons">schedule</span>
+                                    ${visit.time}
+                                </span>
+                            </div>
+                            <div class="visit-status ${visit.status.toLowerCase()}">${visit.status}</div>
+                        </div>
+                        <div class="visit-actions">
+                            <a href="/property-detail.html?id=${visit.property.id}" class="btn btn-text">View Property</a>
+                            <button class="btn btn-icon cancel-visit" data-id="${visit.id}">
+                                <span class="material-icons">close</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading visits:', error);
+            }
+        }
+
+        // Load recommended properties
+        async function loadRecommendedProperties() {
+            try {
+                const recommended = await window.app.propertyManager.getRecommendedProperties();
+                const container = document.getElementById('recommendedProperties');
+                
+                container.innerHTML = recommended.slice(0, 3).map(property => `
+                    <div class="property-card">
+                        <img src="${property.images[0]}" alt="${property.title}">
+                        <div class="property-card-content">
+                            <h3>${property.title}</h3>
+                            <p class="property-price">${window.app.uiHelpers.formatPrice(property.price)}</p>
+                            <p class="property-location">${property.location}</p>
+                            <div class="property-amenities">
+                                ${property.amenities.slice(0, 3).map(amenity => `
+                                    <span class="amenity">${amenity}</span>
+                                `).join('')}
+                            </div>
+                            <div class="property-actions">
+                                <a href="/property-detail.html?id=${property.id}" class="btn btn-primary">View Details</a>
+                                <button class="btn btn-icon add-favorite" data-id="${property.id}">
+                                    <span class="material-icons">favorite_border</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading recommended properties:', error);
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // User menu
+            const userMenuBtn = document.getElementById('userMenuBtn');
+            const userDropdown = document.querySelector('.user-dropdown');
+            
+            userMenuBtn.addEventListener('click', () => {
+                userDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove('active');
+                }
+            });
+
+            // Logout
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                window.app.authManager.logout();
+                window.location.href = '/auth/login.html';
+            });
+
+            // View all buttons
+            document.getElementById('viewAllSaved').addEventListener('click', () => {
+                window.location.href = '/customer/saved.html';
+            });
+
+            document.getElementById('viewAllInquiries').addEventListener('click', () => {
+                window.location.href = '/customer/inquiries.html';
+            });
+
+            document.getElementById('viewAllVisits').addEventListener('click', () => {
+                window.location.href = '/customer/visits.html';
+            });
+
+            document.getElementById('viewAllRecommended').addEventListener('click', () => {
+                window.location.href = '/properties.html?recommended=true';
+            });
+
+            // Remove favorite
+            document.addEventListener('click', async (e) => {
+                if (e.target.closest('.remove-favorite')) {
+                    const button = e.target.closest('.remove-favorite');
+                    const propertyId = button.dataset.id;
+                    
+                    try {
+                        await window.app.favoritesManager.removeFavorite(propertyId);
+                        button.closest('.property-card').remove();
+                        updateSavedCount();
+                    } catch (error) {
+                        console.error('Error removing favorite:', error);
+                        window.app.uiHelpers.showError(button, 'Failed to remove from favorites');
+                    }
+                }
+            });
+
+            // Add favorite
+            document.addEventListener('click', async (e) => {
+                if (e.target.closest('.add-favorite')) {
+                    const button = e.target.closest('.add-favorite');
+                    const propertyId = button.dataset.id;
+                    
+                    try {
+                        await window.app.favoritesManager.addFavorite(propertyId);
+                        button.querySelector('span').textContent = 'favorite';
+                        updateSavedCount();
+                    } catch (error) {
+                        console.error('Error adding favorite:', error);
+                        window.app.uiHelpers.showError(button, 'Failed to add to favorites');
+                    }
+                }
+            });
+
+            // Delete inquiry
+            document.addEventListener('click', async (e) => {
+                if (e.target.closest('.delete-inquiry')) {
+                    const button = e.target.closest('.delete-inquiry');
+                    const inquiryId = button.dataset.id;
+                    
+                    try {
+                        await window.app.propertyManager.deleteInquiry(inquiryId);
+                        button.closest('.inquiry-item').remove();
+                        updateInquiriesCount();
+                    } catch (error) {
+                        console.error('Error deleting inquiry:', error);
+                        window.app.uiHelpers.showError(button, 'Failed to delete inquiry');
+                    }
+                }
+            });
+
+            // Cancel visit
+            document.addEventListener('click', async (e) => {
+                if (e.target.closest('.cancel-visit')) {
+                    const button = e.target.closest('.cancel-visit');
+                    const visitId = button.dataset.id;
+                    
+                    try {
+                        await window.app.propertyManager.cancelVisit(visitId);
+                        button.closest('.visit-item').remove();
+                        updateVisitsCount();
+                    } catch (error) {
+                        console.error('Error canceling visit:', error);
+                        window.app.uiHelpers.showError(button, 'Failed to cancel visit');
+                    }
+                }
+            });
+        }
+
+        // Update counts
+        function updateSavedCount() {
+            const count = document.querySelectorAll('.property-card').length;
+            document.getElementById('savedPropertiesCount').textContent = count;
+        }
+
+        function updateInquiriesCount() {
+            const count = document.querySelectorAll('.inquiry-item').length;
+            document.getElementById('inquiriesCount').textContent = count;
+        }
+
+        function updateVisitsCount() {
+            const count = document.querySelectorAll('.visit-item').length;
+            document.getElementById('visitsCount').textContent = count;
+        }
+    </script>
+</body>
+</html>

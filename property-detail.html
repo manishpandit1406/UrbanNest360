@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - UrbanNest360</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo">
+                <img src="images/logo.png" alt="UrbanNest360 Logo">
+            </a>
+            
+            <div class="nav-links">
+                <a href="/properties.html">Properties</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+            
+            <div class="nav-auth">
+                <a href="/auth/login.html" class="btn btn-secondary">Login</a>
+                <a href="/auth/register.html" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Property Detail Section -->
+    <section class="property-detail-section">
+        <div class="container">
+            <!-- Image Gallery -->
+            <div class="property-gallery">
+                <div class="gallery-main">
+                    <img id="mainImage" src="" alt="Property Image">
+                    <button class="gallery-nav prev">
+                        <span class="material-icons">chevron_left</span>
+                    </button>
+                    <button class="gallery-nav next">
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+                <div class="gallery-thumbnails" id="galleryThumbnails">
+                    <!-- Thumbnails will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Property Info -->
+            <div class="property-info">
+                <div class="property-header">
+                    <div class="property-title">
+                        <h1 id="propertyTitle"></h1>
+                        <p class="property-location" id="propertyLocation"></p>
+                    </div>
+                    <div class="property-actions">
+                        <button id="favoriteBtn" class="btn btn-icon">
+                            <span class="material-icons">favorite_border</span>
+                        </button>
+                        <button id="shareBtn" class="btn btn-icon">
+                            <span class="material-icons">share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="property-price" id="propertyPrice"></div>
+
+                <div class="property-features">
+                    <div class="feature">
+                        <span class="material-icons">bed</span>
+                        <span id="bedrooms"></span>
+                    </div>
+                    <div class="feature">
+                        <span class="material-icons">bathtub</span>
+                        <span id="bathrooms"></span>
+                    </div>
+                    <div class="feature">
+                        <span class="material-icons">square_foot</span>
+                        <span id="area"></span>
+                    </div>
+                    <div class="feature">
+                        <span class="material-icons">garage</span>
+                        <span id="parking"></span>
+                    </div>
+                </div>
+
+                <div class="property-description">
+                    <h2>Description</h2>
+                    <p id="propertyDescription"></p>
+                </div>
+
+                <div class="property-amenities">
+                    <h2>Amenities</h2>
+                    <div class="amenities-grid" id="amenitiesList">
+                        <!-- Amenities will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <div class="property-details">
+                    <h2>Details</h2>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Property Type</span>
+                            <span class="detail-value" id="propertyType"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status</span>
+                            <span class="detail-value" id="propertyStatus"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Year Built</span>
+                            <span class="detail-value" id="yearBuilt"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Furnishing</span>
+                            <span class="detail-value" id="furnishing"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-location-map">
+                    <h2>Location</h2>
+                    <div id="propertyMap" class="map-container"></div>
+                    <div class="nearby-amenities">
+                        <h3>Nearby Amenities</h3>
+                        <div class="amenities-list" id="nearbyAmenities">
+                            <!-- Nearby amenities will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="property-contact">
+                <div class="agent-info">
+                    <img id="agentImage" src="" alt="Agent">
+                    <div class="agent-details">
+                        <h3 id="agentName"></h3>
+                        <p id="agentRole"></p>
+                        <div class="agent-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="agentProperties"></span>
+                                <span class="stat-label">Properties</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="agentRating"></span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="inquiryForm" class="inquiry-form">
+                    <h3>Send Inquiry</h3>
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+
+                <div class="schedule-visit">
+                    <h3>Schedule a Visit</h3>
+                    <form id="visitForm" class="visit-form">
+                        <div class="form-group">
+                            <input type="date" name="visitDate" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="time" name="visitTime" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Schedule Visit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Properties -->
+    <section class="similar-properties">
+        <div class="container">
+            <h2>Similar Properties</h2>
+            <div class="properties-grid" id="similarProperties">
+                <!-- Similar properties will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>UrbanNest360</h3>
+                    <p>Your trusted partner in real estate</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <span class="material-icons">facebook</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="material-icons">twitter</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="material-icons">instagram</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="material-icons">linkedin</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/properties.html">Properties</a></li>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Property Types</h4>
+                    <ul>
+                        <li><a href="/properties.html?type=residential">Residential</a></li>
+                        <li><a href="/properties.html?type=commercial">Commercial</a></li>
+                        <li><a href="/properties.html?type=land">Land</a></li>
+                        <li><a href="/properties.html?type=rental">Rental</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <span class="material-icons">location_on</span>
+                            123 Real Estate Street, City, Country
+                        </li>
+                        <li>
+                            <span class="material-icons">phone</span>
+                            +1 234 567 890
+                        </li>
+                        <li>
+                            <span class="material-icons">email</span>
+                            info@urbannest360.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 UrbanNest360. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
+    
+    <script>
+        // Initialize property detail page
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Get property ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyId = urlParams.get('id');
+
+            if (!propertyId) {
+                window.location.href = '/properties.html';
+                return;
+            }
+
+            try {
+                // Load property details
+                const property = await window.app.propertyManager.getPropertyById(propertyId);
+                displayPropertyDetails(property);
+
+                // Initialize gallery
+                initGallery(property.images);
+
+                // Initialize map
+                initMap(property.location);
+
+                // Load nearby amenities
+                loadNearbyAmenities(property.location);
+
+                // Load similar properties
+                loadSimilarProperties(property);
+
+                // Setup event listeners
+                setupEventListeners(property);
+            } catch (error) {
+                console.error('Error loading property:', error);
+                window.app.uiHelpers.showError(document.querySelector('.property-info'), 'Failed to load property details');
+            }
+        });
+
+        // Display property details
+        function displayPropertyDetails(property) {
+            // Update basic info
+            document.getElementById('propertyTitle').textContent = property.title;
+            document.getElementById('propertyLocation').textContent = property.location;
+            document.getElementById('propertyPrice').textContent = window.app.uiHelpers.formatPrice(property.price);
+            document.getElementById('propertyDescription').textContent = property.description;
+
+            // Update features
+            document.getElementById('bedrooms').textContent = `${property.bedrooms} Beds`;
+            document.getElementById('bathrooms').textContent = `${property.bathrooms} Baths`;
+            document.getElementById('area').textContent = `${property.area} sq ft`;
+            document.getElementById('parking').textContent = `${property.parking} Parking`;
+
+            // Update details
+            document.getElementById('propertyType').textContent = property.type;
+            document.getElementById('propertyStatus').textContent = property.status;
+            document.getElementById('yearBuilt').textContent = property.yearBuilt;
+            document.getElementById('furnishing').textContent = property.furnishing;
+
+            // Update amenities
+            const amenitiesList = document.getElementById('amenitiesList');
+            amenitiesList.innerHTML = property.amenities.map(amenity => `
+                <div class="amenity-item">
+                    <span class="material-icons">${getAmenityIcon(amenity)}</span>
+                    <span>${amenity}</span>
+                </div>
+            `).join('');
+
+            // Update agent info
+            document.getElementById('agentImage').src = property.agent.image;
+            document.getElementById('agentName').textContent = property.agent.name;
+            document.getElementById('agentRole').textContent = property.agent.role;
+            document.getElementById('agentProperties').textContent = property.agent.properties;
+            document.getElementById('agentRating').textContent = property.agent.rating;
+        }
+
+        // Initialize image gallery
+        function initGallery(images) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.getElementById('galleryThumbnails');
+            let currentIndex = 0;
+
+            // Set initial image
+            mainImage.src = images[0];
+
+            // Create thumbnails
+            thumbnails.innerHTML = images.map((image, index) => `
+                <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
+                    <img src="${image}" alt="Property Image ${index + 1}">
+                </div>
+            `).join('');
+
+            // Setup thumbnail click handlers
+            thumbnails.querySelectorAll('.thumbnail').forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    const index = parseInt(thumbnail.dataset.index);
+                    updateGallery(index);
+                });
+            });
+
+            // Setup navigation buttons
+            document.querySelector('.gallery-nav.prev').addEventListener('click', () => {
+                updateGallery((currentIndex - 1 + images.length) % images.length);
+            });
+
+            document.querySelector('.gallery-nav.next').addEventListener('click', () => {
+                updateGallery((currentIndex + 1) % images.length);
+            });
+
+            function updateGallery(index) {
+                currentIndex = index;
+                mainImage.src = images[index];
+                thumbnails.querySelectorAll('.thumbnail').forEach(thumb => {
+                    thumb.classList.toggle('active', parseInt(thumb.dataset.index) === index);
+                });
+            }
+        }
+
+        // Initialize map
+        function initMap(location) {
+            window.mapManager.initMap('propertyMap');
+            window.mapManager.addPropertyMarker(location);
+        }
+
+        // Load nearby amenities
+        async function loadNearbyAmenities(location) {
+            try {
+                const amenities = await window.mapManager.getNearbyAmenities(location);
+                const amenitiesList = document.getElementById('nearbyAmenities');
+                
+                amenitiesList.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item">
+                        <span class="material-icons">${window.mapManager.getAmenityIcon(amenity.type)}</span>
+                        <div class="amenity-info">
+                            <span class="amenity-name">${amenity.name}</span>
+                            <span class="amenity-distance">${amenity.distance}km</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading nearby amenities:', error);
+            }
+        }
+
+        // Load similar properties
+        async function loadSimilarProperties(property) {
+            try {
+                const similarProperties = await window.app.propertyManager.getSimilarProperties(property);
+                const container = document.getElementById('similarProperties');
+                
+                container.innerHTML = similarProperties.map(prop => `
+                    <div class="property-card">
+                        <img src="${prop.images[0]}" alt="${prop.title}">
+                        <div class="property-card-content">
+                            <h3>${prop.title}</h3>
+                            <p class="property-price">${window.app.uiHelpers.formatPrice(prop.price)}</p>
+                            <p class="property-location">${prop.location}</p>
+                            <div class="property-amenities">
+                                ${prop.amenities.slice(0, 3).map(amenity => `
+                                    <span class="amenity">${amenity}</span>
+                                `).join('')}
+                            </div>
+                            <a href="/property-detail.html?id=${prop.id}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading similar properties:', error);
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners(property) {
+            // Favorite button
+            const favoriteBtn = document.getElementById('favoriteBtn');
+            favoriteBtn.addEventListener('click', () => {
+                const isFavorite = window.app.favoritesManager.toggleFavorite(property.id);
+                favoriteBtn.querySelector('span').textContent = isFavorite ? 'favorite' : 'favorite_border';
+            });
+
+            // Share button
+            document.getElementById('shareBtn').addEventListener('click', () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: property.title,
+                        text: property.description,
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    const dummy = document.createElement('input');
+                    document.body.appendChild(dummy);
+                    dummy.value = window.location.href;
+                    dummy.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(dummy);
+                    window.app.uiHelpers.showMessage('Link copied to clipboard');
+                }
+            });
+
+            // Inquiry form
+            document.getElementById('inquiryForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                try {
+                    await window.app.propertyManager.sendInquiry(property.id, Object.fromEntries(formData));
+                    window.app.uiHelpers.showMessage('Inquiry sent successfully');
+                    e.target.reset();
+                } catch (error) {
+                    console.error('Error sending inquiry:', error);
+                    window.app.uiHelpers.showError(e.target, 'Failed to send inquiry');
+                }
+            });
+
+            // Visit form
+            document.getElementById('visitForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                try {
+                    await window.app.propertyManager.scheduleVisit(property.id, Object.fromEntries(formData));
+                    window.app.uiHelpers.showMessage('Visit scheduled successfully');
+                    e.target.reset();
+                } catch (error) {
+                    console.error('Error scheduling visit:', error);
+                    window.app.uiHelpers.showError(e.target, 'Failed to schedule visit');
+                }
+            });
+        }
+
+        // Get amenity icon
+        function getAmenityIcon(amenity) {
+            const icons = {
+                parking: 'local_parking',
+                pool: 'pool',
+                gym: 'fitness_center',
+                security: 'security',
+                elevator: 'elevator',
+                garden: 'landscape',
+                wifi: 'wifi',
+                ac: 'ac_unit',
+                tv: 'tv',
+                kitchen: 'kitchen',
+                laundry: 'local_laundry_service'
+            };
+            return icons[amenity.toLowerCase()] || 'check_circle';
+        }
+    </script>
+</body>
+</html>

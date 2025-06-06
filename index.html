@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeNest - Find Your Dream Property</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1>UrbanNest360</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="auth/login.html" class="btn btn-outline">Login</a>
+                    <a href="auth/register.html" class="btn btn-primary">Register</a>
+                </div>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Your Perfect Property</h1>
+                <p>Discover the best residential and commercial properties across the country</p>
+                <div class="search-box">
+                    <div class="search-tabs">
+                        <button class="active">Buy</button>
+                        <button>Rent</button>
+                        <button>Commercial</button>
+                        <button>Land</button>
+                    </div>
+                    <div class="search-inputs">
+                        <input type="text" placeholder="Search by location, property, or landmark">
+                        <select>
+                            <option value="">Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="villa">Villa</option>
+                            <option value="house">House</option>
+                            <option value="office">Office</option>
+                            <option value="shop">Shop</option>
+                            <option value="land">Land</option>
+                        </select>
+                        <select>
+                            <option value="">Price Range</option>
+                            <option value="0-100000">$0 - $100,000</option>
+                            <option value="100000-500000">$100,000 - $500,000</option>
+                            <option value="500000-1000000">$500,000 - $1,000,000</option>
+                            <option value="1000000+">$1,000,000+</option>
+                        </select>
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Residential</h3>
+                    <p>Apartments, Villas, Houses</p>
+                </div>
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Commercial</h3>
+                    <p>Offices, Shops, Warehouses</p>
+                </div>
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Industrial</h3>
+                    <p>Factories, Plants, Storage</p>
+                </div>
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Land</h3>
+                    <p>Plots, Agricultural, Development</p>
+                </div>
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Rental</h3>
+                    <p>Houses, Apartments, PGs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-properties">
+        <div class="container">
+            <h2>Featured Properties</h2>
+            <div class="property-grid" id="featuredProperties">
+                <!-- Properties will be loaded via JavaScript -->
+            </div>
+            <div class="view-all">
+                <a href="properties.html" class="btn btn-outline">View All Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="number">1</div>
+                    <h3>Search Properties</h3>
+                    <p>Find properties that match your criteria using our advanced filters.</p>
+                </div>
+                <div class="step">
+                    <div class="number">2</div>
+                    <h3>Contact Dealer</h3>
+                    <p>Connect directly with property dealers or owners.</p>
+                </div>
+                <div class="step">
+                    <div class="number">3</div>
+                    <h3>Visit & Decide</h3>
+                    <p>Schedule visits and make your decision with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>Found my dream home within a week of using HomeNest. The process was so smooth!</p>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="author">
+                        <img src="images/user1.jpg" alt="Sarah Johnson">
+                        <h4>Sarah Johnson</h4>
+                        <p>Home Owner</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>As a real estate agent, HomeNest has helped me reach more clients than ever before.</p>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="author">
+                        <img src="images/user2.jpg" alt="Michael Chen">
+                        <h4>Michael Chen</h4>
+                        <p>Real Estate Agent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Find Your Dream Property?</h2>
+                <p>Join thousands of satisfied customers who found their perfect home or investment.</p>
+                <div class="cta-buttons">
+                    <a href="auth/register.html" class="btn btn-primary">Get Started</a>
+                    <a href="properties.html" class="btn btn-outline">Browse Properties</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>HomeNest</h3>
+                    <p>Your trusted partner in real estate. Find, buy, rent or sell properties with ease.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Property Types</h3>
+                    <ul>
+                        <li><a href="#">Residential</a></li>
+                        <li><a href="#">Commercial</a></li>
+                        <li><a href="#">Industrial</a></li>
+                        <li><a href="#">Land</a></li>
+                        <li><a href="#">Rental</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Real Estate Ave, New York</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@homenest.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 HomeNest. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
